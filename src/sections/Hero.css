@@ -1,0 +1,327 @@
+.hero {
+  position: relative;
+  min-height: 100vh;
+  min-height: 100svh;
+  padding-top: var(--nav-h);
+  overflow: hidden;
+  isolation: isolate;
+  background:
+    radial-gradient(60% 70% at 54% 78%, rgba(229, 67, 47, 0.13), transparent 70%),
+    radial-gradient(90% 60% at 50% 0%, rgba(239, 232, 218, 0.04), transparent 70%),
+    var(--ink);
+}
+
+/* Faint editorial column lines */
+.hero__grid {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  max-width: var(--maxw);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+  pointer-events: none;
+}
+
+.hero__grid i {
+  border-left: 1px solid rgba(239, 232, 218, 0.045);
+}
+
+.hero__grid i:last-child {
+  border-right: 1px solid rgba(239, 232, 218, 0.045);
+}
+
+.hero__backlight {
+  position: absolute;
+  left: 50%;
+  bottom: -10%;
+  width: min(70vw, 900px);
+  aspect-ratio: 1;
+  transform: translateX(-46%);
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(243, 196, 50, 0.07), transparent 62%);
+  z-index: -1;
+  pointer-events: none;
+}
+
+.hero__top {
+  position: relative;
+  z-index: 5;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 16px;
+  padding-top: 22px;
+  padding-bottom: 14px;
+}
+
+.hero__top-mid {
+  text-align: center;
+}
+
+.hero__top-end {
+  text-align: right;
+  color: var(--ivory);
+}
+
+/* ---- Name, two identical copies around the portrait ---- */
+.hero__title {
+  margin: 0;
+  font-size: inherit;
+}
+
+.hero__name {
+  position: absolute;
+  z-index: 1;
+  left: 0;
+  right: 0;
+  top: calc(var(--nav-h) + clamp(64px, 7vw, 96px));
+  max-width: var(--maxw);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+  display: flex;
+  flex-direction: column;
+  font-size: clamp(96px, 19.5vw, 320px);
+  color: var(--ivory);
+  pointer-events: none;
+  user-select: none;
+}
+
+.hero__name--outline {
+  z-index: 3;
+  color: transparent;
+  -webkit-text-stroke: 1.4px var(--ivory);
+}
+
+/* Only the second line crosses the portrait in outline; the first stays
+   behind the head, like a masthead. */
+.hero__name--outline .hero__line--1 {
+  visibility: hidden;
+}
+
+.hero__line {
+  display: block;
+  overflow: hidden;
+  padding-block: 0.03em 0.01em;
+  white-space: nowrap;
+}
+
+.hero__line--2 {
+  text-align: right;
+  margin-top: -0.04em;
+}
+
+.hero__char {
+  display: inline-block;
+  will-change: transform;
+}
+
+/* ---- Portrait ---- */
+.hero__portrait {
+  position: absolute;
+  z-index: 2;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  padding-left: 6%;
+  pointer-events: none;
+  margin: 0;
+}
+
+.hero__portrait-inner {
+  height: min(84svh, 980px);
+  aspect-ratio: 1280 / 1891;
+}
+
+.hero__portrait img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: bottom center;
+  transform-origin: 50% 80%;
+  filter: contrast(1.04) saturate(0.92);
+  -webkit-mask-image: linear-gradient(to bottom, #000 72%, transparent 99%);
+  mask-image: linear-gradient(to bottom, #000 72%, transparent 99%);
+}
+
+/* ---- Annotations ---- */
+.hero__notes {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  pointer-events: none;
+}
+
+.hero__note {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--ivory);
+}
+
+.hero__note-line {
+  display: block;
+  width: clamp(40px, 6vw, 90px);
+  height: 1px;
+  background: var(--yellow);
+}
+
+.hero__note--a {
+  top: 31%;
+  left: 63%;
+}
+
+.hero__note--b {
+  top: 61%;
+  right: 61%;
+}
+
+.hero__note--b .hero__note-line {
+  background: var(--red);
+}
+
+/* ---- Bottom band ---- */
+.hero__bottom {
+  position: absolute;
+  z-index: 5;
+  left: 0;
+  right: 0;
+  bottom: clamp(28px, 5vh, 56px);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 32px;
+}
+
+.hero__lead-text {
+  max-width: 34ch;
+}
+
+.hero__lead-text {
+  font-size: clamp(17px, 1.25vw, 20px);
+  line-height: 1.45;
+  color: var(--ivory);
+  text-wrap: pretty;
+}
+
+.hero__ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 22px;
+}
+
+.hero__facts {
+  display: grid;
+  gap: 12px;
+  min-width: 240px;
+  text-align: right;
+}
+
+.hero__facts div {
+  border-top: 1px solid var(--rule);
+  padding-top: 8px;
+}
+
+.hero__facts dd {
+  font-size: 15px;
+  line-height: 1.35;
+  color: var(--ivory);
+}
+
+.hero__scroll {
+  position: absolute;
+  z-index: 5;
+  left: 50%;
+  bottom: 18px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  transform: translateX(-50%);
+  font-size: 10px;
+}
+
+.hero__scroll i {
+  display: block;
+  width: 1px;
+  height: 34px;
+  background: linear-gradient(var(--ivory), transparent);
+  transform-origin: top;
+  animation: scroll-line 2.2s var(--ease-out) infinite;
+}
+
+@keyframes scroll-line {
+  0% { transform: scaleY(0); }
+  50% { transform: scaleY(1); transform-origin: top; }
+  51% { transform-origin: bottom; }
+  100% { transform: scaleY(0); transform-origin: bottom; }
+}
+
+/* ---- Tablet ---- */
+@media (max-width: 1180px) {
+  .hero__note--b {
+    display: none;
+  }
+}
+
+/* ---- Mobile ---- */
+@media (max-width: 899px) {
+  .hero__top {
+    grid-template-columns: 1fr auto;
+  }
+
+  .hero__top-mid,
+  .hero__top > p:first-child {
+    display: none;
+  }
+
+  .hero__top-end {
+    text-align: left;
+  }
+
+  .hero__name {
+    font-size: 25.5vw;
+    top: calc(var(--nav-h) + 60px);
+  }
+
+  .hero__portrait {
+    padding-left: 0;
+  }
+
+  .hero__portrait-inner {
+    height: 66svh;
+  }
+
+  .hero__notes,
+  .hero__facts,
+  .hero__scroll {
+    display: none;
+  }
+
+  .hero__bottom {
+    bottom: 0;
+    padding-top: 90px;
+    padding-bottom: 28px;
+    background: linear-gradient(to bottom, transparent, rgba(12, 11, 10, 0.88) 42%, var(--ink));
+  }
+
+  .hero__lead-text {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 899px) and (max-height: 700px) {
+  .hero__portrait-inner {
+    height: 58svh;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero__scroll i {
+    animation: none;
+  }
+}

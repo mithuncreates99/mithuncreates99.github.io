@@ -1,0 +1,186 @@
+.record {
+  border-top: 1px solid var(--rule);
+  background:
+    radial-gradient(70% 50% at 100% 0%, rgba(243, 196, 50, 0.05), transparent 70%),
+    var(--ink);
+}
+
+.record__heading {
+  font-size: clamp(40px, 5.6vw, 96px);
+  line-height: 1;
+  max-width: 18ch;
+  margin-bottom: clamp(56px, 8vw, 120px);
+}
+
+.record__heading em {
+  color: var(--ivory-dim);
+}
+
+.record__block-title {
+  color: var(--ivory);
+  margin-bottom: 18px;
+}
+
+.record__block-title--gap {
+  margin-top: 56px;
+}
+
+/* ---- Awards ---- */
+.awards {
+  display: grid;
+}
+
+.award {
+  position: relative;
+  display: grid;
+  grid-template-columns: 56px minmax(170px, 3fr) minmax(0, 7fr) auto;
+  gap: 8px 28px;
+  align-items: center;
+  padding: clamp(22px, 2.6vw, 34px) 0;
+}
+
+.award__rule {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  background: var(--rule-strong);
+}
+
+.award__medal {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  position: relative;
+  box-shadow: inset 0 -3px 0 rgba(0, 0, 0, 0.25), inset 0 2px 0 rgba(255, 255, 255, 0.35);
+}
+
+.award__medal::after {
+  content: '';
+  position: absolute;
+  inset: 8px;
+  border-radius: 50%;
+  border: 1px solid rgba(12, 11, 10, 0.45);
+}
+
+.award__medal--yellow { background: var(--yellow); }
+.award__medal--red { background: var(--red); }
+.award__medal--blue { background: var(--blue); }
+
+.award__mark {
+  font-size: clamp(54px, 6vw, 104px);
+}
+
+.award__title {
+  font-size: clamp(17px, 1.35vw, 21px);
+  line-height: 1.35;
+  color: var(--ivory);
+}
+
+.award__detail {
+  margin-top: 6px;
+  color: var(--ivory-dim);
+  font-size: 15.5px;
+}
+
+.award__date {
+  justify-self: end;
+}
+
+/* ---- Experience / Education ---- */
+.record__split {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(40px, 6vw, 112px);
+  margin-top: clamp(72px, 9vw, 140px);
+}
+
+.entry {
+  position: relative;
+  padding: 22px 0 30px;
+}
+
+.entry .rule {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: var(--rule-strong);
+}
+
+.entry__date {
+  color: var(--yellow);
+}
+
+.entry__title {
+  margin-top: 10px;
+  font-size: clamp(26px, 2.4vw, 38px);
+  font-stretch: 72%;
+  font-weight: 750;
+  line-height: 1.05;
+  text-transform: uppercase;
+}
+
+.entry__title--sm {
+  font-size: clamp(20px, 1.7vw, 26px);
+  margin-top: 0;
+  margin-bottom: 6px;
+}
+
+.entry__role {
+  margin-top: 6px;
+  color: var(--ivory);
+}
+
+.entry__detail,
+.entry__points {
+  margin-top: 12px;
+  color: var(--ivory-dim);
+  font-size: 15.5px;
+}
+
+.entry__points li {
+  position: relative;
+  padding-left: 22px;
+  margin-top: 8px;
+}
+
+.entry__points li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.75em;
+  width: 12px;
+  height: 1px;
+  background: var(--red);
+}
+
+.entry--compact {
+  padding: 18px 0;
+}
+
+@media (max-width: 899px) {
+  .award {
+    grid-template-columns: 44px 1fr;
+    align-items: start;
+  }
+
+  .award__medal {
+    width: 34px;
+    height: 34px;
+    margin-top: 10px;
+  }
+
+  .award__body,
+  .award__date {
+    grid-column: 2;
+  }
+
+  .award__date {
+    justify-self: start;
+  }
+
+  .record__split {
+    grid-template-columns: 1fr;
+  }
+}

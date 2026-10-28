@@ -1,0 +1,296 @@
+.collab {
+  position: relative;
+  background: var(--paper);
+  color: var(--paper-ink);
+  overflow: hidden;
+  color-scheme: light;
+}
+
+.collab__stage {
+  position: relative;
+  min-height: max(680px, min(100svh, 940px));
+  padding-top: clamp(96px, 11vw, 150px);
+}
+
+.collab__copy {
+  position: relative;
+  z-index: 4;
+  pointer-events: none;
+}
+
+.collab__copy a {
+  pointer-events: auto;
+}
+
+.collab__title {
+  font-size: clamp(64px, 9.4vw, 168px);
+  line-height: 0.9;
+  letter-spacing: -0.02em;
+  color: var(--paper-ink);
+}
+
+.collab__title em {
+  color: var(--red);
+}
+
+.collab__sub {
+  margin-top: 22px;
+  max-width: 36ch;
+  color: rgba(17, 17, 16, 0.72);
+}
+
+/* ---- Strings ---- */
+.collab__strings {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.collab__strings path {
+  fill: none;
+  stroke: #121212;
+  stroke-linecap: round;
+}
+
+/* ---- Hand ---- */
+.collab__hand {
+  position: absolute;
+  z-index: 1;
+  left: -4%;
+  bottom: -7%;
+  width: clamp(300px, 33vw, 520px);
+  aspect-ratio: 420 / 340;
+  cursor: grab;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.collab__hand:active {
+  cursor: grabbing;
+}
+
+.collab__hand-inner {
+  width: 100%;
+  height: 100%;
+  /* wrist pivot: 185/420, 187/340 */
+  transform-origin: 44% 55%;
+  filter: drop-shadow(0 22px 26px rgba(17, 17, 16, 0.13)) drop-shadow(0 3px 4px rgba(17, 17, 16, 0.08));
+}
+
+.hand {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.hand__skin {
+  fill: #fcfbf8;
+}
+
+.hand__cloth {
+  fill: #f3f1eb;
+}
+
+.hand__ink,
+.hand__mid,
+.hand__fine,
+.hand__thread path {
+  stroke: #141414;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.hand__ink {
+  stroke-width: 2.3;
+}
+
+.hand__mid {
+  stroke-width: 1.5;
+  fill: none;
+}
+
+.hand__mid.hand__skin {
+  fill: #fcfbf8;
+}
+
+.hand__fine {
+  stroke-width: 0.9;
+  fill: none;
+}
+
+.hand__thread path {
+  stroke-width: 1;
+  fill: none;
+}
+
+.hand__dot {
+  fill: #141414;
+}
+
+/* ---- Button ---- */
+.collab__anchor {
+  position: absolute;
+  z-index: 3;
+  left: 63%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.collab__pull {
+  position: relative;
+}
+
+.collab__btn-group {
+  position: relative;
+  perspective: 700px;
+}
+
+.collab__ground {
+  position: absolute;
+  left: 8%;
+  right: 8%;
+  bottom: -26px;
+  height: 22px;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(17, 17, 16, 0.42), rgba(17, 17, 16, 0));
+  filter: blur(3px);
+  pointer-events: none;
+}
+
+.collab__btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(22px, 2.2vw, 30px) clamp(38px, 4.2vw, 64px);
+  border: 0;
+  border-radius: 999px;
+  overflow: hidden;
+  cursor: pointer;
+  color: #f6f3eb;
+  background:
+    linear-gradient(180deg, #343434 0%, #151515 38%, #050505 52%, #0b0b0b 78%, #1a1a1a 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.32),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.08),
+    inset 0 -12px 20px rgba(0, 0, 0, 0.55),
+    0 1px 1px rgba(0, 0, 0, 0.25),
+    0 12px 24px -8px rgba(0, 0, 0, 0.42),
+    0 34px 60px -26px rgba(0, 0, 0, 0.5);
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+.collab__btn:focus-visible {
+  outline: 3px solid var(--red);
+  outline-offset: 5px;
+}
+
+.collab__btn--ghost {
+  visibility: hidden;
+}
+
+.collab__btn-gloss {
+  position: absolute;
+  left: 10%;
+  right: 10%;
+  top: 3px;
+  height: 44%;
+  border-radius: 999px 999px 60% 60% / 999px 999px 30% 30%;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.26) 0%, rgba(255, 255, 255, 0.07) 55%, rgba(255, 255, 255, 0) 100%);
+  pointer-events: none;
+}
+
+.collab__btn-sweep {
+  position: absolute;
+  top: -30%;
+  bottom: -30%;
+  left: 0;
+  width: 38%;
+  background: linear-gradient(100deg, transparent 0%, rgba(255, 255, 255, 0.05) 30%, rgba(255, 255, 255, 0.34) 50%, rgba(255, 255, 255, 0.05) 70%, transparent 100%);
+  transform: skewX(-18deg);
+  pointer-events: none;
+}
+
+.collab__btn-label {
+  position: relative;
+  font-family: var(--font-display);
+  font-stretch: 100%;
+  font-weight: 640;
+  font-size: clamp(15px, 1.3vw, 19px);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.6);
+}
+
+/* ---- Foot ---- */
+.collab__foot {
+  position: absolute;
+  z-index: 4;
+  left: 0;
+  right: 0;
+  bottom: 28px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: baseline;
+  gap: 28px;
+}
+
+.collab__foot .cap {
+  color: rgba(17, 17, 16, 0.7);
+}
+
+.collab__alt {
+  font-size: 16px;
+}
+
+.collab__alt a:hover {
+  color: var(--red);
+}
+
+.collab__alt .cap {
+  color: rgba(17, 17, 16, 0.7);
+}
+
+.collab__alt--inline {
+  display: none;
+  margin-top: 14px;
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 899px) {
+  .collab__stage {
+    min-height: 820px;
+  }
+
+  .collab__title {
+    font-size: 21vw;
+  }
+
+  .collab__anchor {
+    left: 56%;
+    top: 66%;
+  }
+
+  .collab__hand {
+    width: 82vw;
+    left: -20vw;
+    bottom: -12%;
+  }
+
+  .collab__foot {
+    display: none;
+  }
+
+  .collab__alt--inline {
+    display: block;
+  }
+
+  .collab__btn-label {
+    letter-spacing: 0.16em;
+  }
+}
