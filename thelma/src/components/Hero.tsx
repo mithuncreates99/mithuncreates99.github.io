@@ -2,8 +2,10 @@ import { useRef } from 'react'
 import { contact, hero, person } from '../content'
 import { gsap, MQ, ScrollTrigger, useGSAP } from '../lib/motion'
 import { Arrow, ArrowUpRight, LinkedIn, Mail } from './Icons'
-import portrait900 from '../assets/img/thelma-cutout-900.webp'
 import portrait560 from '../assets/img/thelma-cutout-560.webp'
+import portrait900 from '../assets/img/thelma-cutout-900.webp'
+import portrait1400 from '../assets/img/thelma-cutout-1400.webp'
+import portrait1900 from '../assets/img/thelma-cutout-1900.webp'
 
 export function Hero({ ready }: { ready: boolean }) {
   const ref = useRef<HTMLElement>(null)
@@ -151,10 +153,10 @@ export function Hero({ ready }: { ready: boolean }) {
             <div className="arch">
               <img
                 src={portrait900}
-                srcSet={`${portrait560} 560w, ${portrait900} 900w`}
-                sizes="(max-width: 900px) 80vw, 470px"
-                width={900}
-                height={1039}
+                srcSet={`${portrait560} 560w, ${portrait900} 900w, ${portrait1400} 1400w, ${portrait1900} 1900w`}
+                sizes="(max-width: 900px) 330px, 560px"
+                width={1900}
+                height={2193}
                 alt={`Portrait of ${person.name}`}
                 fetchPriority="high"
               />
