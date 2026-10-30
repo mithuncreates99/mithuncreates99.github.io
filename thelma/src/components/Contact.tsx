@@ -49,7 +49,7 @@ export function Contact({ onHire }: Props) {
         <div className="contact-grid">
           <div className="contact-copy">
             <p className="eyebrow">
-              <b>08</b> Contact
+              <b>09</b> Contact
             </p>
             <h2 className="contact-h" id="contact-h">
               <span className="line">

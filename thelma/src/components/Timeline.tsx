@@ -105,7 +105,8 @@ export function Timeline() {
                       const end = b.end ?? today
                       const width = pct(end) - pct(b.start)
                       const outside = width < (lane.name === 'Work' ? 16 : 9)
-                      const cls = `tl-bar ${lane.name === 'Work' ? 'work' : lane.name === 'Leadership' ? 'lead' : ''}${outside ? ` outside${below ? ' below' : ''}` : ''}`
+                      const kind = lane.name === 'Work' ? 'work' : lane.name === 'Education' ? '' : 'lead'
+                      const cls = `tl-bar ${kind}${outside ? ` outside${below ? ' below' : ''}` : ''}`
                       if (outside) below = !below
                       return (
                         <div
@@ -116,10 +117,10 @@ export function Timeline() {
                           data-end={end}
                           tabIndex={0}
                           role="img"
-                          aria-label={`${lane.name}: ${b.label}, ${b.when}`}
-                          onPointerEnter={(e) => show(e.currentTarget, b.label, b.when)}
+                          aria-label={`${lane.name}: ${'full' in b ? b.full : b.label}, ${b.when}`}
+                          onPointerEnter={(e) => show(e.currentTarget, 'full' in b ? b.full : b.label, b.when)}
                           onPointerLeave={() => setTip(null)}
-                          onFocus={(e) => show(e.currentTarget, b.label, b.when)}
+                          onFocus={(e) => show(e.currentTarget, 'full' in b ? b.full : b.label, b.when)}
                           onBlur={() => setTip(null)}
                         >
                           <span>

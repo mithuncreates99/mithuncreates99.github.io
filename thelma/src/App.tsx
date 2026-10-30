@@ -5,6 +5,7 @@ import { Curtain } from './components/Curtain'
 import { Footer } from './components/Footer'
 import { Hero } from './components/Hero'
 import { HireDialog } from './components/HireDialog'
+import { Leadership } from './components/Leadership'
 import { Lens } from './components/Lens'
 import { Nav } from './components/Nav'
 import { Path } from './components/Path'
@@ -61,6 +62,7 @@ export default function App() {
         <Work />
         <Toolkit />
         <Timeline />
+        <Leadership />
         <Recognition />
         <Path />
         <Contact onHire={openHire} />

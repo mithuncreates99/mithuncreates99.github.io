@@ -23,7 +23,7 @@ export function Path() {
   return (
     <section className="section" id="path" ref={ref} aria-labelledby="path-h">
       <div className="wrap">
-        <SectionHead n="07" label="Experience & education" heading={path.heading} id="path-h" />
+        <SectionHead n="08" label="Experience & education" heading={path.heading} id="path-h" />
         <div className="path-grid">
           <div className="rail">
             <p className="rail-h">Experience</p>

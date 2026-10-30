@@ -73,8 +73,9 @@ export const about = {
     { k: 'Top grades', v: 'Operations Research A+ · IT Project Management A+ · Service Operations O' },
   ],
   milestones: [
+    { when: '2018 – 2019', what: 'Event coordinator at Sampoorna NGO, rehabilitating rural places in India.' },
     { when: 'Aug 2020', what: 'Began the B.Tech in Computer Science & Business Systems at SRM IST, a twinning programme of technical and management studies.' },
-    { when: '2022 – 2024', what: 'Vice President of the Department of CSE, then of Camogenics, SRM IST’s official media partner.' },
+    { when: '2021 – 2024', what: 'Rose from head of administration to secretary to vice president of Camogenics, SRM IST’s official media partner; vice president of the Department of CSE in 2022 – 2023.' },
     { when: 'Jun 2023', what: 'Market Research Analyst at Stellantis, Chennai.' },
     { when: 'Jan 2024', what: 'Asset Manager in Stellantis’ IT infrastructure team.' },
     { when: 'Aug 2024', what: 'Graduated with a GPA of 8.91.' },
@@ -192,24 +193,33 @@ export const toolkit = {
 /** Timeline lanes; dates as decimal years. `end: null` runs to today. */
 export const timeline = {
   heading: ['Four years of study, ', 'three of work.'],
-  start: 2020.5,
+  start: 2018,
   end: 2027,
   lanes: [
     { name: 'Education', bars: [{ start: 2020.58, end: 2024.58, label: 'B.Tech CSBS · SRM IST', short: 'B.Tech · SRM', when: 'Aug 2020 – Aug 2024' }] },
     {
       name: 'Work',
       bars: [
-        { start: 2023.42, end: 2023.67, label: 'Market research · Stellantis', short: 'Market research', when: 'Jun – Sep 2023' },
-        { start: 2024.0, end: 2024.42, label: 'Asset manager · Stellantis', short: 'Asset manager', when: 'Jan – Jun 2024' },
-        { start: 2024.75, end: 2025.17, label: 'Automation · KLA', short: 'KLA', when: 'Oct 2024 – Mar 2025' },
-        { start: 2025.17, end: null, label: 'Operations · Bible Tours', short: 'Bible Tours', when: 'Mar 2025 – Present' },
+        { start: 2023.42, end: 2023.67, label: 'Market research', short: 'Market research', full: 'Market Research Analyst, Stellantis', when: 'Jun – Sep 2023' },
+        { start: 2024.0, end: 2024.42, label: 'Asset manager', short: 'Asset manager', full: 'Asset Manager, Stellantis', when: 'Jan – Jun 2024' },
+        { start: 2024.75, end: 2025.17, label: 'KLA', short: 'KLA', full: 'Automation & Business Process Analyst, KLA', when: 'Oct 2024 – Mar 2025' },
+        { start: 2025.17, end: null, label: 'Operations · Bible Tours', short: 'Bible Tours', full: 'Operations Executive, Bible Tours', when: 'Mar 2025 – Present' },
       ],
     },
     {
-      name: 'Leadership',
+      name: 'Camogenics',
       bars: [
-        { start: 2022.0, end: 2023.0, label: 'VP · Dept. of CSE', short: 'VP · CSE', when: '2022 – 2023' },
-        { start: 2023.0, end: 2024.0, label: 'VP · Camogenics', short: 'Camogenics', when: '2023 – 2024' },
+        { start: 2021.0, end: 2022.0, label: 'Head of admin', short: 'Admin', full: 'Head of administration, Camogenics', when: '2021 – 2022' },
+        { start: 2022.0, end: 2023.0, label: 'Secretary', short: 'Secretary', full: 'Secretary, Camogenics', when: '2022 – 2023' },
+        { start: 2023.0, end: 2024.0, label: 'Vice President', short: 'VP', full: 'Vice President, Camogenics', when: '2023 – 2024' },
+      ],
+    },
+    {
+      name: 'Campus & NGO',
+      bars: [
+        { start: 2018.0, end: 2019.0, label: 'Sampoorna NGO', short: 'NGO', full: 'Event coordinator, Sampoorna NGO', when: '2018 – 2019' },
+        { start: 2021.0, end: 2022.0, label: 'Campus events', short: 'Events', full: 'Event coordinator, department, Campus Life', when: '2021 – 2022' },
+        { start: 2022.0, end: 2023.0, label: 'VP · CSE', short: 'VP · CSE', full: 'Vice President, Department of CSE', when: '2022 – 2023' },
       ],
     },
   ],
@@ -217,7 +227,7 @@ export const timeline = {
     { k: 'Companies', v: '3', s: 'Stellantis → Bible Tours' },
     { k: 'Experience', v: '3 yrs', s: 'since June 2023' },
     { k: 'GPA', v: '8.91', s: 'B.Tech CSBS' },
-    { k: 'VP roles', v: '2', s: 'SRM IST' },
+    { k: 'Leadership', v: '6', s: 'roles since 2018' },
   ],
 }
 
@@ -227,7 +237,7 @@ export const recognition = {
     { size: 'xl', mark: '15%', kicker: 'Stellantis · IT infrastructure', title: '15% less downtime', text: 'Across 500+ IT assets, by owning issue tracking and resolution end to end.' },
     { size: 'md', mark: '9+', kicker: 'Model UN · photojournalism', title: 'Best IP Photojournalist', text: 'SSN University MUN 2023, one of 9+ MUN awards. Honourable mention at Christ University, 2022.' },
     { size: 'md', mark: '8.91', kicker: 'Academics', title: 'GPA 8.91', text: 'B.Tech, Computer Science & Business Systems, SRM IST.' },
-    { size: 'lg', mark: 'VP', kicker: 'Leadership', title: 'Vice President, twice', text: 'Department of CSE (2022 – 23), then Camogenics, SRM IST’s official media partner (2023 – 24). Led teams that ran inter-college events such as Monocle and Texus.', pills: [{ k: 'NCC', v: 'A++', s: '‘A’ certificate' }, { k: 'Volunteer', v: '6 yrs', s: 'Sampoorna NGO' }] },
+    { size: 'lg', mark: 'VP', kicker: 'Leadership', title: 'Vice President, twice', text: 'Vice president of the Department of CSE (2022 – 23), then of Camogenics, SRM IST’s official media partner (2023 – 24), after serving as its head of administration and secretary. Led teams that ran inter-college events such as Monocle and Texus.', pills: [{ k: 'NCC', v: 'A++', s: '‘A’ certificate' }, { k: 'Volunteer', v: '6 yrs', s: 'Sampoorna NGO' }] },
   ],
 }
 
@@ -301,4 +311,26 @@ export const hire = {
   cta: 'Email Thelma',
   subject: 'Opportunity for Thelma Agnes Peter',
   stageHint: 'Drag the button, or tap the hand to give the strings a tug.',
+}
+
+/** Leadership roles, as Thelma listed them. */
+export const leadership = {
+  label: 'Leadership',
+  heading: ['Six roles, ', 'one steady climb.'],
+  sub: 'From coordinating NGO events in 2018 to vice president of SRM IST’s official media partner.',
+  ladder: {
+    org: 'Camogenics',
+    note: 'Official media partner of SRM IST',
+    steps: [
+      { role: 'Head of Admin\u00adistration', when: '2021 – 2022', h: 38 },
+      { role: 'Secretary', when: '2022 – 2023', h: 66 },
+      { role: 'Vice President', when: '2023 – 2024', h: 94 },
+    ],
+  },
+  roles: [
+    { role: 'Event Coordinator', org: 'Sampoorna NGO', when: '2018 – 2019', note: 'Rehabilitating rural places in India.' },
+    { role: 'Event Coordinator', org: 'Department · Campus Life', when: '2021 – 2022', note: '' },
+    { role: 'Vice President', org: 'Department of Computer Science (CSE), SRM IST', when: '2022 – 2023', note: '' },
+  ],
+  also: 'Led teams that ran inter-college events such as Monocle and Texus.',
 }

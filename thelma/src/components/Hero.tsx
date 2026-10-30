@@ -16,13 +16,16 @@ export function Hero({ ready }: { ready: boolean }) {
       mm.add(MQ.motionOK, () => {
         const tl = gsap.timeline({ defaults: { ease: 'power4.out' } })
         tl.from('.hero-glow', { opacity: 0, scale: 0.7, duration: 2, ease: 'power2.out' }, 0)
+          .fromTo('.light-leak', { xPercent: -110, opacity: 1 }, { xPercent: 110, opacity: 0.4, duration: 1.8, ease: 'power2.inOut' }, 0.1)
           .from('.arch-frame', { clipPath: 'inset(48% 0 48% 0 round 999px 999px 26px 26px)', duration: 1.4, ease: 'expo.inOut' }, 0)
-          .from('.arch img', { scale: 1.25, opacity: 0, duration: 1.3 }, 0.15)
+          // Camera push-in: the portrait starts close and settles back into the frame.
+          .from('.arch img', { scale: 1.5, yPercent: 7, opacity: 0, duration: 2.4, ease: 'expo.out' }, 0.1)
           .fromTo('.arch-sheen', { xPercent: -120 }, { xPercent: 260, duration: 1.6, ease: 'power2.inOut' }, 0.9)
           .from('.orbit', { opacity: 0, scale: 0.85, duration: 1.6 }, 0.3)
           .from('.hero-chip', { y: 18, opacity: 0, duration: 0.9 }, 0.35)
           .from('.hero-kicker', { y: 14, opacity: 0, duration: 0.8 }, 0.45)
-          .from('.hero-name .line > span', { yPercent: 110, duration: 1.2, stagger: 0.11 }, 0.5)
+          .from('.hero-name .ch', { yPercent: 115, rotate: 6, duration: 1, stagger: 0.035 }, 0.4)
+          .from('.hero-name .last > span', { clipPath: 'inset(0 100% 0 0)', duration: 1.3, ease: 'power3.inOut' }, 0.75)
           .from('.hero-intro', { y: 22, opacity: 0, duration: 1 }, 0.95)
           .from('.hero-ctas > *, .hero-social', { y: 16, opacity: 0, duration: 0.8, stagger: 0.08 }, 1.1)
           .from('.float-card', { y: 26, opacity: 0, scale: 0.92, duration: 1, stagger: 0.18, ease: 'back.out(1.6)' }, 1.1)
@@ -90,6 +93,7 @@ export function Hero({ ready }: { ready: boolean }) {
     <section className="hero" id="top" ref={ref} aria-labelledby="hero-name">
       <div className="hero-grid" aria-hidden="true" />
       <div className="hero-glow" aria-hidden="true" />
+      <div className="light-leak" aria-hidden="true" />
       <div className="wrap hero-in">
         <div className="hero-copy">
           <p className="hero-chip">
@@ -98,12 +102,19 @@ export function Hero({ ready }: { ready: boolean }) {
           </p>
           <p className="eyebrow hero-kicker">{person.kicker}</p>
           <h1 className="hero-name" id="hero-name">
+            <span className="sr-only">{person.name}</span>
             {person.nameLines.map((l) => (
-              <span className="line" key={l}>
-                <span>{l}</span>
+              <span className="line" key={l} aria-hidden="true">
+                <span>
+                  {Array.from(l).map((c, i) => (
+                    <span className="ch" key={i}>
+                      {c}
+                    </span>
+                  ))}
+                </span>
               </span>
             ))}
-            <span className="line last">
+            <span className="line last" aria-hidden="true">
               <span>{person.nameLast}</span>
             </span>
           </h1>
