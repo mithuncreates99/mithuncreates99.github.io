@@ -1,0 +1,323 @@
+.work {
+  position: relative;
+  border-top: 1px solid var(--rule);
+  background: var(--ink);
+}
+
+.work__intro {
+  padding-bottom: clamp(64px, 8vw, 120px);
+}
+
+.work__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 24px;
+  margin-bottom: clamp(56px, 8vw, 120px);
+}
+
+.work__heading {
+  font-size: clamp(38px, 5vw, 84px);
+  line-height: 1;
+  max-width: 14ch;
+}
+
+.work__heading em {
+  color: var(--ivory-dim);
+}
+
+.work__count {
+  text-align: right;
+}
+
+/* ---------------- Horizontal case files ---------------- */
+.files {
+  position: relative;
+  overflow: hidden;
+  border-top: 1px solid var(--rule);
+}
+
+.files__track {
+  display: flex;
+  width: max-content;
+  min-height: 100svh;
+  will-change: transform;
+}
+
+.files__lead {
+  flex: 0 0 auto;
+  width: clamp(280px, 30vw, 460px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 18px;
+  padding: calc(var(--nav-h) + 40px) var(--gutter) 64px;
+  border-right: 1px solid var(--rule);
+}
+
+.files__lead-title {
+  font-size: clamp(80px, 9vw, 160px);
+}
+
+.files__lead-note {
+  color: var(--ivory-dim);
+  max-width: 28ch;
+}
+
+.files__arrow {
+  color: var(--yellow);
+}
+
+.file {
+  flex: 0 0 auto;
+  width: min(80vw, 1240px);
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+  gap: clamp(28px, 4vw, 72px);
+  align-items: center;
+  padding: calc(var(--nav-h) + 40px) clamp(28px, 4vw, 72px) 64px;
+  border-right: 1px solid var(--rule);
+}
+
+.file__meta {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--rule);
+}
+
+.file__n {
+  color: var(--yellow);
+}
+
+.file__num {
+  display: block;
+  font-size: clamp(90px, 9vw, 160px);
+  line-height: 0.85;
+  margin-top: 18px;
+  -webkit-text-stroke-color: var(--rule-strong);
+}
+
+.file__title {
+  font-size: clamp(48px, 5vw, 92px);
+  margin-top: 6px;
+  max-width: 12ch;
+}
+
+.file__context {
+  margin-top: 14px;
+  color: var(--ivory);
+}
+
+.file__summary {
+  margin-top: 18px;
+  color: var(--ivory-dim);
+  max-width: 44ch;
+}
+
+.file__points {
+  margin-top: 14px;
+  display: grid;
+  gap: 8px;
+  max-width: 46ch;
+  color: var(--ivory-dim);
+  font-size: 15.5px;
+}
+
+.file__points li {
+  position: relative;
+  padding-left: 22px;
+}
+
+.file__points li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.75em;
+  width: 12px;
+  height: 1px;
+  background: var(--red);
+}
+
+.file__tools {
+  margin-top: 20px;
+  padding-top: 10px;
+  border-top: 1px solid var(--rule);
+  font-size: 15px;
+  max-width: 46ch;
+}
+
+.file__tools .cap {
+  margin-right: 10px;
+}
+
+.file__visual {
+  padding: clamp(16px, 2vw, 32px);
+  border: 1px solid var(--rule);
+  background: var(--ink-2);
+}
+
+/* ---- Diagrams ---- */
+.diagram {
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.diagram .draw,
+.dg-line,
+.dg-accent,
+.dg-accent-red,
+.dg-faint-line {
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.dg-line {
+  stroke: var(--ivory);
+  stroke-width: 1.4;
+}
+
+.dg-accent {
+  stroke: var(--yellow);
+  stroke-width: 1.6;
+}
+
+.dg-accent-red {
+  stroke: var(--red);
+  stroke-width: 1.6;
+}
+
+.dg-faint,
+.dg-faint-line {
+  stroke: var(--rule);
+  stroke-width: 1;
+  stroke-dasharray: 3 5;
+}
+
+.dg-dot {
+  fill: var(--ink);
+  stroke: var(--ivory);
+  stroke-width: 1.3;
+}
+
+.dg-num {
+  font-family: var(--font-mono);
+  font-size: 15px;
+  fill: var(--ivory);
+}
+
+.dg-label {
+  font-family: var(--font-display);
+  font-stretch: 75%;
+  font-weight: 700;
+  font-size: 19px;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  fill: var(--ivory);
+}
+
+.dg-sub {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  fill: var(--ivory-dim);
+}
+
+.dg-sub--y {
+  fill: var(--yellow);
+}
+
+.dg-sub--r {
+  fill: var(--red);
+}
+
+.dg-center {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 26px;
+  fill: var(--ivory-dim);
+}
+
+.dg-dot--y {
+  stroke: var(--yellow);
+}
+
+.dg-big {
+  font-family: var(--font-display);
+  font-stretch: 62%;
+  font-weight: 860;
+  font-size: 56px;
+  fill: var(--ivory);
+}
+
+.dg-big--y {
+  fill: var(--yellow);
+}
+
+/* ---------------- Responsive ---------------- */
+@media (max-width: 899px) {
+  .work__head {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .work__count {
+    text-align: left;
+  }
+
+  .files__track {
+    flex-direction: column;
+    width: 100%;
+    min-height: 0;
+  }
+
+  .files__lead {
+    width: 100%;
+    padding: 64px var(--gutter) 24px;
+    border-right: 0;
+  }
+
+  .files__arrow {
+    display: none;
+  }
+
+  .file {
+    width: 100%;
+    grid-template-columns: 1fr;
+    padding: 48px var(--gutter);
+    border-right: 0;
+    border-top: 1px solid var(--rule);
+  }
+
+  .file__num {
+    font-size: 96px;
+  }
+}
+
+/* Reduced motion on wide screens: no pinning, panels wrap into a grid. */
+@media (prefers-reduced-motion: reduce) and (min-width: 900px) {
+  .files__track {
+    flex-direction: column;
+    width: 100%;
+    min-height: 0;
+  }
+
+  .files__lead {
+    width: 100%;
+    border-right: 0;
+    padding-top: 64px;
+  }
+
+  .files__arrow {
+    display: none;
+  }
+
+  .file {
+    width: 100%;
+    border-right: 0;
+    border-top: 1px solid var(--rule);
+  }
+}

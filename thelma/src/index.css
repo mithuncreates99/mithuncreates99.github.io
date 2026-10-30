@@ -1,0 +1,360 @@
+@import '@fontsource-variable/archivo/wdth.css';
+@import '@fontsource/instrument-serif/400.css';
+@import '@fontsource/instrument-serif/400-italic.css';
+@import '@fontsource-variable/jetbrains-mono/index.css';
+
+:root {
+  /* Surfaces */
+  --ink: #0c0b0a;
+  --ink-2: #13110f;
+  --ink-3: #1b1916;
+  --paper: #eae8e2;
+  --paper-ink: #111110;
+
+  /* Type colours */
+  --ivory: #efe8da;
+  --ivory-dim: #c2bbad;
+  --ivory-mute: #958e81;
+  --rule: rgba(239, 232, 218, 0.16);
+  --rule-strong: rgba(239, 232, 218, 0.32);
+
+  /* Accents — used sparingly */
+  --yellow: #f3c432;
+  --red: #e5432f;
+  --blue: #5b7cf4;
+
+  --font-display: 'Archivo Variable', 'Arial Narrow', 'Helvetica Neue', Arial, sans-serif;
+  --font-serif: 'Instrument Serif', 'Iowan Old Style', Georgia, serif;
+  --font-mono: 'JetBrains Mono Variable', ui-monospace, 'SF Mono', Menlo, monospace;
+
+  --gutter: clamp(16px, 4vw, 56px);
+  --maxw: 1480px;
+  --nav-h: 64px;
+
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+
+  color-scheme: dark;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  scroll-padding-top: var(--nav-h);
+}
+
+body {
+  margin: 0;
+  background: var(--ink);
+  color: var(--ivory);
+  font-family: var(--font-display);
+  font-stretch: 100%;
+  font-size: clamp(16px, 0.35vw + 15px, 18px);
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  overflow-x: clip;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+img {
+  height: auto;
+}
+
+a {
+  color: inherit;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+}
+
+h1,
+h2,
+h3,
+h4,
+p,
+ul,
+ol,
+figure,
+dl,
+dd {
+  margin: 0;
+}
+
+ul,
+ol {
+  padding: 0;
+  list-style: none;
+}
+
+::selection {
+  background: var(--yellow);
+  color: var(--ink);
+}
+
+:focus-visible {
+  outline: 2px solid var(--yellow);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* ------------------------------------------------------------------ */
+/* Film grain: one static noise tile, nudged in steps (cheap transform) */
+/* ------------------------------------------------------------------ */
+.grain {
+  position: fixed;
+  inset: -60px;
+  z-index: 90;
+  pointer-events: none;
+  opacity: 0.075;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 1.4 -0.2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  animation: grain-shift 1.2s steps(6) infinite;
+  will-change: transform;
+}
+
+@keyframes grain-shift {
+  0% { transform: translate(0, 0); }
+  17% { transform: translate(-22px, 14px); }
+  33% { transform: translate(18px, -26px); }
+  50% { transform: translate(-30px, -8px); }
+  67% { transform: translate(26px, 20px); }
+  83% { transform: translate(-8px, 30px); }
+  100% { transform: translate(0, 0); }
+}
+
+html[data-low-power='true'] .grain {
+  animation: none;
+}
+
+/* ------------------------------------------------------------------ */
+/* Shared typography                                                   */
+/* ------------------------------------------------------------------ */
+.display {
+  font-family: var(--font-display);
+  font-stretch: 62%;
+  font-weight: 860;
+  text-transform: uppercase;
+  line-height: 0.84;
+  letter-spacing: -0.012em;
+}
+
+.outline {
+  color: transparent;
+  -webkit-text-stroke: 1.5px currentColor;
+  -webkit-text-stroke-color: var(--ivory);
+}
+
+.cap {
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  font-weight: 450;
+  line-height: 1.45;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ivory-dim);
+}
+
+.serif {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  letter-spacing: -0.005em;
+}
+
+.serif em,
+em.serif {
+  font-style: italic;
+}
+
+.mark {
+  background: linear-gradient(transparent 58%, rgba(243, 196, 50, 0.85) 58%, rgba(243, 196, 50, 0.85) 92%, transparent 92%);
+  color: inherit;
+  padding: 0 0.06em;
+}
+
+.dot {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--red);
+  vertical-align: 0.08em;
+  margin-right: 0.6em;
+}
+
+.wrap {
+  width: 100%;
+  max-width: var(--maxw);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.rule {
+  height: 1px;
+  background: var(--rule);
+  transform-origin: left center;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip-link {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  z-index: 200;
+  padding: 10px 16px;
+  background: var(--yellow);
+  color: var(--ink);
+  font-family: var(--font-mono);
+  font-size: 13px;
+  text-decoration: none;
+  transform: translateY(-160%);
+  transition: transform 0.2s var(--ease-out);
+}
+
+.skip-link:focus-visible {
+  transform: none;
+}
+
+/* Text link with a drawn underline */
+.text-link {
+  position: relative;
+  text-decoration: none;
+  background: linear-gradient(currentColor, currentColor) 0 100% / 100% 1px no-repeat;
+  transition: background-size 0.35s var(--ease-out);
+}
+
+.text-link:hover {
+  background-size: 0% 1px;
+  background-position: 100% 100%;
+}
+
+/* Chapter header used by every section */
+.chapter {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 18px;
+  margin-bottom: clamp(40px, 7vw, 96px);
+}
+
+.chapter__n {
+  color: var(--yellow);
+}
+
+.chapter__line {
+  height: 1px;
+  background: var(--rule-strong);
+  transform-origin: left center;
+}
+
+/* Section spacing */
+.section {
+  position: relative;
+  padding-block: clamp(96px, 14vw, 200px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+  }
+
+  .grain {
+    animation: none;
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Buttons (motion handled by Framer Motion in components)             */
+/* ------------------------------------------------------------------ */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 48px;
+  padding: 0 22px;
+  border-radius: 999px;
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  border: 1px solid var(--ivory);
+  white-space: nowrap;
+}
+
+.btn--solid {
+  background: var(--ivory);
+  color: var(--ink);
+}
+
+.btn--ghost {
+  background: transparent;
+  color: var(--ivory);
+  border-color: var(--rule-strong);
+}
+
+.btn--ghost:hover {
+  border-color: var(--ivory);
+}
+
+.btn__arrow {
+  display: inline-block;
+  transition: transform 0.3s var(--ease-out);
+}
+
+.btn:hover .btn__arrow {
+  transform: translate(2px, -2px);
+}
+
+/* Word-by-word reveals */
+.word {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: top;
+  padding-bottom: 0.08em;
+  margin-bottom: -0.08em;
+}
+
+.word__inner {
+  display: inline-block;
+}
+
+.chapter--paper .chapter__line {
+  background: rgba(17, 17, 16, 0.3);
+}
+
+.chapter--paper .cap {
+  color: rgba(17, 17, 16, 0.7);
+}
+
+.chapter--paper .chapter__n {
+  color: var(--red);
+}

@@ -23,9 +23,24 @@ jobs:
         with:
           node-version: 22
           cache: npm
+          cache-dependency-path: |
+            package-lock.json
+            thelma/package-lock.json
+
+      # Main portfolio → site root
       - run: npm ci
       - run: npm run lint
       - run: npm run build
+
+      # Thelma's portfolio → /thelma/
+      - name: Build thelma/
+        working-directory: thelma
+        run: |
+          npm ci
+          npm run lint
+          npm run build
+      - run: cp -r thelma/dist dist/thelma
+
       - uses: actions/configure-pages@v6
       - uses: actions/upload-pages-artifact@v5
         with:

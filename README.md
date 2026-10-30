@@ -2,6 +2,10 @@
 
 A cinematic, editorial portfolio built with React, TypeScript and Vite, animated with GSAP (+ ScrollTrigger) and Framer Motion.
 
+## Also in this repo
+
+`thelma/` holds a second, separate portfolio (Thelma Agnes Peter) built on the same engine. The deploy workflow builds it and publishes it at `/thelma/`. Work on it from inside that folder (`cd thelma && npm install && npm run dev`).
+
 ## Run it
 
 ```bash
