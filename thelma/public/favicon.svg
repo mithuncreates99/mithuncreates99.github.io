@@ -1,6 +1,1 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <rect width="64" height="64" rx="32" fill="#0c0b0a"/>
-  <path d="M14 56 V30 A18 18 0 0 1 50 30 V56" fill="none" stroke="#efe8da" stroke-width="2"/>
-  <text x="32" y="44" text-anchor="middle" font-family="Arial Narrow, Arial, sans-serif" font-weight="800" font-size="17" letter-spacing="0.5" fill="#efe8da">TAP</text>
-  <circle cx="50" cy="14" r="4" fill="#f3c432"/>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#27101c"/><stop offset="1" stop-color="#10070c"/></linearGradient></defs><rect width="64" height="64" rx="16" fill="url(#g)"/><rect x="1" y="1" width="62" height="62" rx="15" fill="none" stroke="#e5b5c7" stroke-opacity=".35" stroke-width="2"/><text x="32" y="43" text-anchor="middle" font-family="Georgia, serif" font-style="italic" font-size="30" fill="#e5b5c7">TP</text></svg>

@@ -1,181 +1,81 @@
-import { useEffect, useRef, useState } from 'react'
-import { AnimatePresence, motion, useMotionValueEvent, useScroll } from 'framer-motion'
-import { person } from '../content/profile'
-import './Nav.css'
+import { useEffect, useState } from 'react'
+import { person } from '../content'
 
 const LINKS = [
+  { id: 'about', label: 'About' },
   { id: 'work', label: 'Work' },
-  { id: 'profile', label: 'Profile' },
-  { id: 'record', label: 'Record' },
-  { id: 'toolkit', label: 'Toolkit' },
-] as const
-
-const SECTION_IDS = ['top', 'signal', 'profile', 'work', 'record', 'toolkit', 'contact']
+  { id: 'skills', label: 'Skills' },
+  { id: 'recognition', label: 'Recognition' },
+  { id: 'path', label: 'Experience' },
+  { id: 'contact', label: 'Contact' },
+]
 
 export function Nav() {
-  const [active, setActive] = useState<string>('top')
-  const [hidden, setHidden] = useState(false)
   const [scrolled, setScrolled] = useState(false)
-  const [onPaper, setOnPaper] = useState(false)
-  const [menuOpen, setMenuOpen] = useState(false)
-  const menuButtonRef = useRef<HTMLButtonElement>(null)
-  const { scrollY } = useScroll()
+  const [open, setOpen] = useState(false)
+  const [active, setActive] = useState('')
 
-  // Hide on scroll down, show on scroll up.
-  useMotionValueEvent(scrollY, 'change', (y) => {
-    const prev = scrollY.getPrevious() ?? 0
-    setScrolled(y > 24)
-    if (menuOpen) return
-    setHidden(y > 320 && y > prev + 4)
-    if (y < prev - 4) setHidden(false)
-  })
-
-  // Active section + light/dark theme from what sits under the bar.
   useEffect(() => {
-    const sections = SECTION_IDS.map((id) => document.getElementById(id)).filter(Boolean) as HTMLElement[]
-    const io = new IntersectionObserver(
-      (entries) => {
-        for (const e of entries) {
-          if (e.isIntersecting) setActive(e.target.id === 'signal' ? 'top' : e.target.id)
-        }
-      },
-      { rootMargin: '-40% 0px -55% 0px' },
-    )
-    sections.forEach((s) => io.observe(s))
-
-    const paper = document.getElementById('contact')
-    const io2 = new IntersectionObserver(([e]) => setOnPaper(e.isIntersecting), {
-      rootMargin: '0px 0px -100% 0px',
-    })
-    if (paper) io2.observe(paper)
-    return () => {
-      io.disconnect()
-      io2.disconnect()
-    }
+    const onScroll = () => setScrolled(window.scrollY > 24)
+    onScroll()
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
-  // Mobile menu: Escape closes, focus returns to the button.
   useEffect(() => {
-    if (!menuOpen) return
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') {
-        setMenuOpen(false)
-        menuButtonRef.current?.focus()
-      }
-    }
-    document.addEventListener('keydown', onKey)
-    document.documentElement.style.overflow = 'hidden'
-    return () => {
-      document.removeEventListener('keydown', onKey)
-      document.documentElement.style.overflow = ''
-    }
-  }, [menuOpen])
+    const sections = LINKS.map((l) => document.getElementById(l.id)).filter((s): s is HTMLElement => !!s)
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) setActive(e.target.id)
+        })
+      },
+      { rootMargin: '-45% 0px -50% 0px' },
+    )
+    sections.forEach((s) => io.observe(s))
+    return () => io.disconnect()
+  }, [])
+
+  useEffect(() => {
+    if (!open) return
+    const onKey = (e: KeyboardEvent) => e.key === 'Escape' && setOpen(false)
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+  }, [open])
 
   return (
-    <>
-      <motion.header
-        className="nav"
-        data-scrolled={scrolled}
-        data-theme={onPaper && !menuOpen ? 'paper' : 'ink'}
-        initial={false}
-        animate={{ y: hidden ? '-110%' : '0%' }}
-        transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
-      >
-        <nav className="nav__inner wrap" aria-label="Primary">
-          <a href="#top" className="nav__brand" aria-label={`${person.name}, back to top`}>
-            <span className="nav__mono" aria-hidden="true">
-              {person.initials}
-            </span>
-            <span className="nav__name">{person.name}</span>
-          </a>
-
-          <ul className="nav__links">
-            {LINKS.map((l) => (
-              <li key={l.id}>
-                <a href={`#${l.id}`} className="nav__link" aria-current={active === l.id ? 'true' : undefined}>
-                  {l.label}
-                  {active === l.id && (
-                    <motion.span
-                      layoutId="nav-active"
-                      className="nav__active"
-                      transition={{ type: 'spring', stiffness: 380, damping: 32 }}
-                    />
-                  )}
-                </a>
-              </li>
-            ))}
-          </ul>
-
-          <motion.a
-            href="#contact"
-            className="nav__cta"
-            whileHover={{ y: -2 }}
-            whileTap={{ scale: 0.96 }}
-            transition={{ type: 'spring', stiffness: 420, damping: 24 }}
-          >
-            <span className="dot" aria-hidden="true" />
-            Contact
-          </motion.a>
-
-          <motion.button
-            ref={menuButtonRef}
-            type="button"
-            className="nav__menu-btn"
-            aria-expanded={menuOpen}
-            aria-controls="mobile-menu"
-            onClick={() => setMenuOpen((o) => !o)}
-            whileTap={{ scale: 0.92 }}
-          >
-            <span className="sr-only">{menuOpen ? 'Close menu' : 'Open menu'}</span>
-            <motion.span
-              className="nav__burger"
-              aria-hidden="true"
-              animate={menuOpen ? 'open' : 'closed'}
-              initial={false}
-            >
-              <motion.i variants={{ closed: { rotate: 0, y: -4 }, open: { rotate: 45, y: 0 } }} />
-              <motion.i variants={{ closed: { rotate: 0, y: 4 }, open: { rotate: -45, y: 0 } }} />
-            </motion.span>
-          </motion.button>
-        </nav>
-      </motion.header>
-
-      <AnimatePresence>
-        {menuOpen && (
-          <motion.div
-            id="mobile-menu"
-            className="mmenu"
-            initial={{ clipPath: 'inset(0 0 100% 0)' }}
-            animate={{ clipPath: 'inset(0 0 0% 0)' }}
-            exit={{ clipPath: 'inset(0 0 100% 0)' }}
-            transition={{ duration: 0.55, ease: [0.76, 0, 0.24, 1] }}
-          >
-            <motion.ul
-              className="mmenu__list"
-              initial="hidden"
-              animate="show"
-              exit="hidden"
-              variants={{ show: { transition: { staggerChildren: 0.06, delayChildren: 0.18 } } }}
-            >
-              {[...LINKS, { id: 'contact', label: 'Contact' }].map((l, i) => (
-                <motion.li
-                  key={l.id}
-                  variants={{ hidden: { y: '110%' }, show: { y: '0%' } }}
-                  transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-                >
-                  <a href={`#${l.id}`} className="mmenu__link display" onClick={() => setMenuOpen(false)}>
-                    <span className="cap mmenu__n">0{i + 1}</span>
-                    {l.label}
-                  </a>
-                </motion.li>
-              ))}
-            </motion.ul>
-            <p className="cap mmenu__foot">
-              {person.location} — {person.availability}
-            </p>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </>
+    <nav className={`nav${scrolled || open ? ' scrolled' : ''}${open ? ' open' : ''}`} aria-label="Main">
+      <div className="wrap nav-in">
+        <a className="brand" href="#top" onClick={() => setOpen(false)}>
+          <span className="mono-mark" aria-hidden="true">
+            {person.initials}
+          </span>
+          {person.name}
+        </a>
+        <ul className="nav-links" id="nav-links">
+          {LINKS.map((l) => (
+            <li key={l.id}>
+              <a href={`#${l.id}`} aria-current={active === l.id ? 'true' : undefined} onClick={() => setOpen(false)}>
+                {l.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+        <a className="btn nav-cta" href="#contact">
+          Let’s talk
+        </a>
+        <button
+          className="menu-btn"
+          type="button"
+          aria-expanded={open}
+          aria-controls="nav-links"
+          aria-label={open ? 'Close menu' : 'Open menu'}
+          onClick={() => setOpen((o) => !o)}
+        >
+          <span />
+          <span />
+        </button>
+      </div>
+    </nav>
   )
 }

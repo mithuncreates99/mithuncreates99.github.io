@@ -17,7 +17,6 @@ export default defineConfig({
           groups: [
             { name: 'react', test: /node_modules[\\/](react|react-dom|scheduler)[\\/]/ },
             { name: 'gsap', test: /node_modules[\\/](gsap|@gsap)[\\/]/ },
-            { name: 'motion', test: /node_modules[\\/](framer-motion|motion-dom|motion-utils)[\\/]/ },
           ],
         },
       },
