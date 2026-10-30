@@ -72,7 +72,7 @@ export function Timeline() {
   return (
     <section className="section tl-section" ref={ref} aria-labelledby="tl-h">
       <div className="wrap">
-        <SectionHead n="04" label="Timeline" heading={timeline.heading} id="tl-h" />
+        <SectionHead n="05" label="Timeline" heading={timeline.heading} id="tl-h" />
         <div className="tl-card">
           <div className="tl-stats">
             {timeline.stats.map((s) => (
@@ -115,7 +115,8 @@ export function Timeline() {
                           data-start={b.start}
                           data-end={end}
                           tabIndex={0}
-                          aria-label={`${b.label}, ${b.when}`}
+                          role="img"
+                          aria-label={`${lane.name}: ${b.label}, ${b.when}`}
                           onPointerEnter={(e) => show(e.currentTarget, b.label, b.when)}
                           onPointerLeave={() => setTip(null)}
                           onFocus={(e) => show(e.currentTarget, b.label, b.when)}

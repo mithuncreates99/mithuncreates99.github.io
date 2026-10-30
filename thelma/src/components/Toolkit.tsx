@@ -23,7 +23,7 @@ export function Toolkit() {
   return (
     <section className="section" id="skills" ref={ref} aria-labelledby="skills-h">
       <div className="wrap">
-        <SectionHead n="03" label="Toolkit" heading={toolkit.heading} sub={toolkit.sub} id="skills-h" />
+        <SectionHead n="04" label="Toolkit" heading={toolkit.heading} sub={toolkit.sub} id="skills-h" />
         <div className="bento">
           {toolkit.groups.map((g) => (
             <article className={`tool${g.wide ? ' wide' : ''}`} key={g.n} onPointerMove={onMove}>

@@ -145,7 +145,7 @@ export const work = {
       stats: [
         { value: '15+', label: 'vendor, hotel & transport partners' },
         { value: '3', label: 'channels: email, phone, chat' },
-        { value: 'SLA', label: 'on every case' },
+        { value: 'SLA', label: 'and quality standards' },
       ],
       chips: ['SLAs', 'Root cause analysis', 'Vendor liaison', 'Order tracking'],
       details: [
@@ -273,4 +273,32 @@ export const contactSection = {
   heading: ['Let’s turn data ', 'into decisions.'],
   text: 'Hiring for an analyst, research or operations role? My inbox is open.',
   interests: 'Away from work: photojournalism, portrait photography and singing in a choir.',
+}
+
+export const lens = {
+  label: 'Behind the lens',
+  heading: ['Behind the lens, ', 'the same eye for detail.'],
+  body: [
+    'Away from spreadsheets, I’m a photojournalist and portrait photographer. Both jobs start the same way: look closely, find what matters in the frame, and leave out the noise.',
+    'My photojournalism at Model United Nations conferences earned Best IP Photojournalist at SSN University and an honourable mention at Christ University.',
+  ],
+  notes: [
+    { k: 'SSN University MUN, 2023', v: 'Best IP Photojournalist' },
+    { k: 'Christ University MUN, 2022', v: 'Honourable mention, photojournalism' },
+    { k: 'Model UN', v: '9+ awards' },
+    { k: 'Also', v: 'Portrait photography · choir member' },
+  ],
+  flashLabel: 'Portrait of Thelma, lit by a movable light. Use the arrow keys to move it.',
+  alt: 'Thelma, smiling in a yellow top, leaning on a wooden counter framed by two round arches.',
+  caption: 'Portrait · Thelma Agnes Peter',
+}
+
+export const hire = {
+  button: 'Hire me',
+  eyebrow: 'Open to analyst, research and operations roles',
+  title: ['Hire', 'Thelma.'],
+  text: 'Based in Chennai and open to roles in other Indian cities. The quickest way to reach me is email.',
+  cta: 'Email Thelma',
+  subject: 'Opportunity for Thelma Agnes Peter',
+  stageHint: 'Drag the button, or tap the hand to give the strings a tug.',
 }

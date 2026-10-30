@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { person } from '../content'
+import { hire, person } from '../content'
 
 const LINKS = [
   { id: 'about', label: 'About' },
@@ -10,7 +10,7 @@ const LINKS = [
   { id: 'contact', label: 'Contact' },
 ]
 
-export function Nav() {
+export function Nav({ onHire }: { onHire: (opener: HTMLElement) => void }) {
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
   const [active, setActive] = useState('')
@@ -61,9 +61,9 @@ export function Nav() {
             </li>
           ))}
         </ul>
-        <a className="btn nav-cta" href="#contact">
-          Let’s talk
-        </a>
+        <button className="btn nav-cta" type="button" aria-haspopup="dialog" onClick={(e) => onHire(e.currentTarget)}>
+          {hire.button}
+        </button>
         <button
           className="menu-btn"
           type="button"

@@ -21,7 +21,7 @@ export function Recognition() {
   return (
     <section className="section" id="recognition" ref={ref} aria-labelledby="rec-h">
       <div className="wrap">
-        <SectionHead n="05" label="Recognition" heading={recognition.heading} id="rec-h" />
+        <SectionHead n="06" label="Recognition" heading={recognition.heading} id="rec-h" />
         <div className="rec">
           {recognition.cards.map((c) => (
             <article className={`rec-card ${c.size}`} key={c.title}>

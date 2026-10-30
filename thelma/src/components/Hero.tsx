@@ -1,6 +1,6 @@
 import { useRef } from 'react'
 import { contact, hero, person } from '../content'
-import { gsap, MQ, useGSAP } from '../lib/motion'
+import { gsap, MQ, ScrollTrigger, useGSAP } from '../lib/motion'
 import { Arrow, ArrowUpRight, LinkedIn, Mail } from './Icons'
 import portrait900 from '../assets/img/thelma-cutout-900.webp'
 import portrait560 from '../assets/img/thelma-cutout-560.webp'
@@ -17,7 +17,7 @@ export function Hero({ ready }: { ready: boolean }) {
         const tl = gsap.timeline({ defaults: { ease: 'power4.out' } })
         tl.from('.hero-glow', { opacity: 0, scale: 0.7, duration: 2, ease: 'power2.out' }, 0)
           .from('.arch-frame', { clipPath: 'inset(48% 0 48% 0 round 999px 999px 26px 26px)', duration: 1.4, ease: 'expo.inOut' }, 0)
-          .from('.arch img', { scale: 1.25, filter: 'blur(12px) saturate(0.6)', duration: 1.3, clearProps: 'filter' }, 0.15)
+          .from('.arch img', { scale: 1.25, opacity: 0, duration: 1.3 }, 0.15)
           .fromTo('.arch-sheen', { xPercent: -120 }, { xPercent: 260, duration: 1.6, ease: 'power2.inOut' }, 0.9)
           .from('.orbit', { opacity: 0, scale: 0.85, duration: 1.6 }, 0.3)
           .from('.hero-chip', { y: 18, opacity: 0, duration: 0.9 }, 0.35)
@@ -36,6 +36,17 @@ export function Hero({ ready }: { ready: boolean }) {
   // Scroll: the copy lifts away while the portrait drifts and grows, like a camera push.
   useGSAP(
     () => {
+      // Pause the hero's looping decoration once it has scrolled away.
+      const off = ScrollTrigger.create({
+        trigger: ref.current,
+        start: 'top top',
+        end: 'bottom top',
+        onToggle: (self) => {
+          if (!ref.current) return
+          if (self.isActive || self.progress === 0) delete ref.current.dataset.offscreen
+          else ref.current.dataset.offscreen = 'true'
+        },
+      })
       const mm = gsap.matchMedia()
       mm.add(`${MQ.motionOK} and ${MQ.desktop}`, () => {
         const st = { trigger: ref.current, start: 'top top', end: 'bottom top', scrub: 0.6 }
@@ -67,7 +78,10 @@ export function Hero({ ready }: { ready: boolean }) {
         window.addEventListener('pointermove', onMove)
         return () => window.removeEventListener('pointermove', onMove)
       })
-      return () => mm.revert()
+      return () => {
+        off.kill()
+        mm.revert()
+      }
     },
     { scope: ref },
   )

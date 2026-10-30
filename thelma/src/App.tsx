@@ -4,6 +4,8 @@ import { Contact } from './components/Contact'
 import { Curtain } from './components/Curtain'
 import { Footer } from './components/Footer'
 import { Hero } from './components/Hero'
+import { HireDialog } from './components/HireDialog'
+import { Lens } from './components/Lens'
 import { Nav } from './components/Nav'
 import { Path } from './components/Path'
 import { Recognition } from './components/Recognition'
@@ -15,6 +17,9 @@ import { gsap, MQ, useGSAP } from './lib/motion'
 
 export default function App() {
   const [ready, setReady] = useState(false)
+  const [hire, setHire] = useState<{ open: boolean; opener: HTMLElement | null }>({ open: false, opener: null })
+  const openHire = useCallback((opener: HTMLElement) => setHire({ open: true, opener }), [])
+  const closeHire = useCallback(() => setHire((h) => ({ ...h, open: false })), [])
   const onDone = useCallback(() => setReady(true), [])
   const root = useRef<HTMLDivElement>(null)
 
@@ -47,19 +52,21 @@ export default function App() {
       </a>
       <Curtain onDone={onDone} />
       <div className="grain" aria-hidden="true" />
-      <Nav />
+      <Nav onHire={openHire} />
       <main id="main">
         <Hero ready={ready} />
         <Stats />
         <About />
+        <Lens />
         <Work />
         <Toolkit />
         <Timeline />
         <Recognition />
         <Path />
-        <Contact />
+        <Contact onHire={openHire} />
       </main>
       <Footer />
+      <HireDialog open={hire.open} opener={hire.opener} onClose={closeHire} />
     </div>
   )
 }

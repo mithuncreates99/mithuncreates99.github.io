@@ -77,7 +77,7 @@ export function Work() {
   return (
     <section className="section" id="work" ref={ref} aria-labelledby="work-h">
       <div className="wrap">
-        <SectionHead n="02" label="Selected work" heading={work.heading} sub={work.sub} id="work-h" />
+        <SectionHead n="03" label="Selected work" heading={work.heading} sub={work.sub} id="work-h" />
         <div className="projects">
           {work.projects.map((p) => (
             <ProjectRow p={p} key={p.id} />
