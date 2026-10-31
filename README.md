@@ -6,6 +6,8 @@ A cinematic, editorial portfolio built with React, TypeScript and Vite, animated
 
 `thelma/` holds a second, separate portfolio (Thelma Agnes Peter) with its own design and content (`thelma/src/content.ts`). The deploy workflow builds it and publishes it at `/thelma/`. Work on it from inside that folder (`cd thelma && npm install && npm run dev`).
 
+`public/thelma-v2/index.html` is a third, single-file version of Thelma's portfolio (camera intro, leadership spotlight). Vite copies it as-is, so it is published at `/thelma-v2/`. Edit that one file to change it.
+
 ## Run it
 
 ```bash
