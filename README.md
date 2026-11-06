@@ -1,89 +1,52 @@
-# Mithun Kumar V — Portfolio
+# Mithun Kumar
 
-A cinematic, editorial portfolio built with React, TypeScript and Vite, animated with GSAP (+ ScrollTrigger) and Framer Motion.
+**Software Developer | Full-Stack Engineering · Augmented Reality · Interactive Applications**
 
-## Also in this repo
+I build practical software experiences across web, mobile and immersive technologies. My work combines product thinking with hands-on development—from full-stack applications and offline-first experiences to Unity and WebAR prototypes.
 
-`thelma/` holds a second, separate portfolio (Thelma Agnes Peter) with its own design and content (`thelma/src/content.ts`). The deploy workflow builds it and publishes it at `/thelma/`. Work on it from inside that folder (`cd thelma && npm install && npm run dev`).
+- **Portfolio:** [mithuncreates99.github.io](https://mithuncreates99.github.io)
+- **Featured application:** [Tell Me](https://github.com/mithuncreates99/tell-me)
+- **AR portfolio:** [Unity + WebAR](https://github.com/mithuncreates99/ar-portfolio)
+- **Location:** Rouen, France
+- **Education:** Master in Management, NEOMA Business School · B.Tech in Information Technology
 
-`public/thelma-v2/index.html` is a third, single-file version of Thelma's portfolio (camera intro, leadership spotlight). Vite copies it as-is, so it is published at `/thelma-v2/`. Edit that one file to change it.
+## Technical focus
 
-## Run it
-
-```bash
-npm install
-npm run dev        # local dev server
-npm run build      # type-check + production build into dist/
-npm run preview    # serve the production build
-npm run lint       # oxlint
-npm run typecheck  # tsc only
-```
-
-Requires Node 20 or newer.
-
-## Where things live
-
-| What | File |
+| Area | Technologies |
 | --- | --- |
-| All facts (profile, education, projects, awards, skills) | `src/content/profile.ts` |
-| Contact links and optional fields | `src/content/contact.ts` |
-| Torch reveal (reusable) | `src/components/Flashlight.tsx` |
-| Hand illustration | `src/components/HandIllustration.tsx` |
-| Contact overlay | `src/components/ContactOverlay.tsx` |
-| Chapters | `src/sections/*.tsx` |
-| Design tokens, grain, shared type | `src/index.css` |
-| Images (WebP) | `src/assets/img/` |
+| Web development | TypeScript, JavaScript, React, Next.js, Vite, HTML, CSS |
+| Backend & data | Node.js, Cloudflare Workers, Hono, Supabase, PostgreSQL, SQLite |
+| Immersive technology | Unity, C#, Vuforia, A-Frame, Three.js, WebAR |
+| Engineering practices | API design, offline-first architecture, end-to-end encryption, automated testing, CI |
 
-Every sentence about Mithun comes from the CV or from the Tell Me repository (README, `docs/CASE_STUDY.md`, `web/package.json`). Edit `src/content/profile.ts` when something changes — nothing else repeats those facts.
+## Selected projects
 
-## Configuration values
+### [Tell Me — Private habit tracker](https://github.com/mithuncreates99/tell-me)
+A web and iPhone habit-tracking application built around simple Yes/No check-ins, weekly insights and optional social accountability.
 
-`src/content/contact.ts`:
+**Engineering highlights:** React, TypeScript, Cloudflare Workers, D1, Durable Objects, Web Push, device-side encryption, offline support, Vitest and Playwright.
 
-- `email`, `linkedin`, `github` — filled in from the CV and the GitHub account.
-- `phone` — **optional, empty on purpose.** Add a number to show it in the contact overlay.
-- `cvUrl` — **optional, empty.** Put a PDF in `public/` (e.g. `public/Mithun_Kumar_V_CV.pdf`) and set `cvUrl: './Mithun_Kumar_V_CV.pdf'` to add a download row.
+### [AR Portfolio — Unity + WebAR](https://github.com/mithuncreates99/ar-portfolio)
+An interactive portfolio exploring augmented reality across native iOS and browser-based experiences.
 
-An empty field is never rendered, so no placeholder link can go live.
+**Engineering highlights:** Unity, C#, Vuforia, A-Frame, MindAR, glTF/USDZ asset pipelines and 3D optimisation.
 
-## How the motion is split
+### [Xpense — Shared expense tracker](https://github.com/mithuncreates99/xpense)
+A mobile-first expense tracker with shared groups, bill splitting, budgeting and analytics.
 
-- **GSAP + ScrollTrigger**: hero opening timeline, scroll parallax, image masks, the pinned horizontal case files, diagram drawing, section entrances, the threads (draw-on, sway, pointer lean) and the hand's tug.
-- **Framer Motion**: buttons, hover/tap feedback, navigation states (active underline, hide on scroll, mobile menu), the pill's 3D tilt and light sweep, and the pill-to-overlay morph.
-- The two never animate the same property on the same element: GSAP moves wrappers, Framer moves the interactive element inside.
-- `prefers-reduced-motion`: GSAP animations are registered inside `gsap.matchMedia()` and skipped; case files stack instead of pinning; threads render static; Framer uses `MotionConfig reducedMotion="user"`.
-- Low-power devices (≤2 cores, ≤2 GB, or Data Saver): no torch glow or smoothing, no thread sway, static grain.
+**Engineering highlights:** Next.js, React, TypeScript, Supabase, PostgreSQL, offline data handling and live updates.
 
-## The torch (`<Flashlight>`)
+### [Max Gold Rouen — Concept demo](https://github.com/mithuncreates99/max-gold-demo)
+An independent, non-production concept demonstrating a bilingual customer experience and salon dashboard. Sample data only; not an official business website.
 
-```tsx
-<Flashlight
-  label="What the region shows"     // accessible name
-  base={<Scene lit={false} />}      // dark layer, aria-hidden
-  reveal={<Scene lit />}            // lit layer, the accessible content
-  radius={230}                      // px at desktop, scales with the box
-  core={0.3}                        // fully lit share of the radius
-  glow                              // warm glow (auto-off on low power)
-  smoothing={0.16}                  // pointer lag, 1 = none
-  rest={{ x: 62, y: 46 }}           // resting spot in %
-/>
-```
+## What I value
 
-A CSS mask on the lit layer follows `--x/--y/--r` custom properties. Pointer events only store a target; a `requestAnimationFrame` loop eases towards it and stops once settled, so React never re-renders on pointer moves. Touch: tap moves the beam, horizontal drags follow, vertical swipes scroll. A **Lights on** toggle reveals everything (keyboard and screen-reader friendly).
+- Building usable products, not just isolated demos.
+- Clear architecture, maintainable code and meaningful tests.
+- Privacy, accessibility, performance and responsive design.
+- Documenting technical decisions and trade-offs.
 
-## Deploying to GitHub Pages
+## Connect
 
-The build uses a relative base (`base: './'`), so `dist/` works from any path.
-
-1. Create a repository (e.g. `portfolio`) and push this folder.
-2. In the repository: **Settings → Pages → Source: GitHub Actions**, then add the standard "Static HTML" workflow pointing at `dist/` after `npm ci && npm run build` — or build locally and publish `dist/` to a `gh-pages` branch.
-
-## Before publishing
-
-- [ ] Contact links open the right profiles; add `phone` / `cvUrl` if wanted.
-- [ ] Facts match the latest CV (`src/content/profile.ts`).
-- [ ] The campus captions say "NEOMA, Rouen campus" — change them in `src/sections/Frame.tsx` and `src/sections/Hero.tsx` if the photo was taken elsewhere.
-- [ ] Torch and threads tested on a phone (tap, drag) and with a mouse.
-- [ ] Contact overlay: opens with Enter, Tab stays inside, Escape and the close button both work.
-- [ ] `npm run build`, then `npm run preview` and check the browser console.
-- [ ] Mobile layout and reduced motion (macOS: Accessibility → Display → Reduce motion).
+- [Portfolio](https://mithuncreates99.github.io)
+- [GitHub](https://github.com/mithuncreates99)
